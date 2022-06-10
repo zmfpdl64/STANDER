@@ -1,5 +1,7 @@
 # STANDER
 
+# http://www.stander-mcs.com
+
 git clone https://github.com/zmfpdl64/STANDER.git
 
 #기본 환경 설정
