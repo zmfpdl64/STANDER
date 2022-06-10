@@ -71,9 +71,8 @@ public class LoginController {
         }
         Member member = memberService.login(loginForm);
         if(member != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute(SessionConstants.LOGIN_MEMBER, member);
-
+            HttpSession session = request.getSession(); //현재 사용자의 세션이 없으면 생성해서 전달
+            session.setAttribute(SessionConstants.LOGIN_MEMBER, member);   //내 세션 저장소에 key: value형태로 저장
             return "redirect:/mypage";
         }
         model.addAttribute("member", loginForm);

@@ -122,9 +122,6 @@ public class ReserveController {
             }
 
 
-
-
-
             if(member.getTime() == 0) {
                 model.addAttribute("msg", "시간 충전이 필요합니다");
                 model.addAttribute("num", num);

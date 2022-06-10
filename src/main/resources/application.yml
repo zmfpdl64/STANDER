@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://127.0.0.1:3306/jpastander
+    url: jdbc:mariadb://localhost:3306/jpastander
     username: woojin
     password: 1234
     driver-class-name: org.mariadb.jdbc.Driver
@@ -19,7 +19,7 @@ spring:
     host: smtp.naver.com
     port: 465
     username: woojintestid@naver.com
-    password: "!@woojintestid"
+    password: "!@woojintest"
     properties:
       mail.smtp.auth: true
       mail.smtp.ssl.enable: true
@@ -48,5 +48,5 @@ server:
 #        type: info
 
 file:
-  dir: C:/images/
+  dir: D:\images/
 
