@@ -22,14 +22,23 @@ public class Rest_LoginController {
     @Value("${file.dir}")
     private String fileDir;
 
+    @Value("${ip.address}")
+    private String ip;
+
     @ResponseBody
     @PostMapping("/rest_login")
     public Member rest_login(@RequestParam("username")String username, @RequestParam("password") String password) {
-        LoginForm loginForm = new LoginForm();
-        loginForm.setUsername(username);
-        loginForm.setPassword(password);
-        Member member = memberService.login(loginForm);
-        return member;
+        try {
+            LoginForm loginForm = new LoginForm();
+            loginForm.setUsername(username);
+            loginForm.setPassword(password);
+            Member member = memberService.login(loginForm);
+            return member;
+        }
+        catch (Exception e ) {
+            return null;
+        }
+
     }
 
     @ResponseBody

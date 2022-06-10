@@ -49,4 +49,5 @@ server:
 
 file:
   dir: D:\images/
-
+ip:
+  address: "39.115.156.83"

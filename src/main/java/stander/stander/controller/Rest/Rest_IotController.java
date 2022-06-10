@@ -21,11 +21,20 @@ public class Rest_IotController {
     @Value("${file.dir}")
     private String fileDir;
 
+    @Value("${ip.address}")
+    private String ip;
+
     @GetMapping("/open/{id}")
     public String open(@PathVariable("id") Long id) {
-        Member member = memberService.findById(id);
-        if(member.getQr() == null) return null;
-        System.out.println(member.getQr());
-        return "ok";
+        try {
+            Member member = memberService.findById(id);
+            if(member.getQr() == null) return null;
+            System.out.println(member.getQr());
+            return "ok";
+        }
+        catch (Exception e) {
+            return null;
+        }
+
     }
 }

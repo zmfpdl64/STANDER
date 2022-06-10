@@ -33,6 +33,9 @@ public class ReserveController {
     @Value("${file.dir}")
     private String fileDir;
 
+    @Value("${ip.address}")
+    private String ip;
+
     @GetMapping
     public String reserve(Model model, HttpServletRequest request) {
 
@@ -129,7 +132,7 @@ public class ReserveController {
                 return "reserve/price";
             }
 
-            String url = "http://localhost:8080/open/" + member.getId();
+            String url = "http://"+ ip +":8080/open/" + member.getId();
 
             String file_path = fileDir + member.getId() + "/";
             String file_name = "QRCODE.jpg";
