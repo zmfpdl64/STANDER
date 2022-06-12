@@ -28,7 +28,7 @@ public class SeatService {
         sitRepository.merge(id, member);
     }
 
-    public Seat clearOne(Member member) {
+    public Seat clearOne(Member member) {   //특정 좌석 퇴실 처리 하는 코드
         List<Seat> result = sitRepository.findUseSeat();
         if( result == null) return null;
         for(Seat seat : result) {
@@ -39,19 +39,19 @@ public class SeatService {
         }
         return null;
     }
-    public void clearAll() {
+    public void clearAll() {    //모든 좌석 퇴실
         List<Seat> result = sitRepository.findAll();
         for(Seat seat : result) {
             seat.setPresent_use(false);
         }
     }
 
-    public Seat findMember(Member member) {
+    public Seat findMember(Member member) { //특정 member가 앉고 있는 seat 찾는 함수
         Seat seat = sitRepository.findByMember(member);
         return seat;
     }
 
-    public List<Seat> find_Usage_History(Member member) {
+    public List<Seat> find_Usage_History(Member member) {   //사용자의 이용내역을 불러오는 함수
         List<Seat> result = sitRepository.findByMembers(member);
         if(result == null) return null;
         return result;
@@ -73,7 +73,7 @@ public class SeatService {
 
     }
 
-    public Boolean check_member(Member member) {
+    public Boolean check_member(Member member) {    //현재 사용자가 중복 예약 중인지 확인하는 함수
         List<Seat> result = sitRepository.findUseSeat();
         if(result == null) return false;
         for( Seat seat : result) {

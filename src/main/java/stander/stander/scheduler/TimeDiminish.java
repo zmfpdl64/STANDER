@@ -22,25 +22,22 @@ public class TimeDiminish {
     @Autowired
     private MemberService memberService;
 
-    @Scheduled(cron = "0/1 * * * * *")
+    @Scheduled(cron = "0/1 * * * * *")  //1초마다 실행되는 함수로 실시간으로 시간을 흐르게하는 함수이다.
     public void timeDiminish() {
         List<Seat> useSeat = seatService.findUseSeat();
         if(!Objects.isNull(useSeat)) {
             for (Seat seat : useSeat) {
-                int use_time = ((int) new Date().getTime() - (int) seat.getCheck_in().getTime()) / 1000;
-                log.info("use_time = {}", use_time);
+                int use_time = ((int) new Date().getTime() - (int) seat.getCheck_in().getTime()) / 1000;    // 1000을 나눠줘야 초로 환산된다.
+               // log.info("use_time = {}", use_time);
 
-                int time = seat.getMember().getTime() - use_time;
-                log.info("time = {}", time);
-
-                if (seat.getMember().getTime() == 0) {
+                if (seat.getMember().getTime() == 0) {  //만약 시간이 존재하지 않는다면 예약화면에서 제겋한다.
                     Member member = seat.getMember();
                     member.setQr(null);
-                    seatService.clearOne(member);
-                    memberService.modify(member);
+                    seatService.clearOne(member);   //퇴실을 진행한다.
+                    memberService.modify(member);   //변경된 member db를 수정해준다.
 
                 } else {
-                    seat.getMember().setTime(seat.getMember().getTime() - 1);
+                    seat.getMember().setTime(seat.getMember().getTime() - 1);   //만약 시간이 존재한다면 1씩 감소 시킨다.
                     memberService.modify(seat.getMember());
                 }
 

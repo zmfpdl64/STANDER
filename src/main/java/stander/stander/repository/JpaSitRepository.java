@@ -33,11 +33,11 @@ public class JpaSitRepository implements SitRepository {
     }
 
     @Override
-    public Seat findByMember(Member member) {
+    public Seat findByMember(Member member) {   //객체 member를 통해 연관되어있는 seat을 찾아낸다.
         List<Seat> result = em.createQuery("select m from Seat m where m.member = :member", Seat.class)
                 .setParameter("member", member)
                 .getResultList();
-        if (result.size() != 0) {
+        if (result.size() != 0) {   //존재한다면 반환하고 없다면 null값을 반환한다.
             Seat seat = result.get(0);
             return seat;
         }
@@ -50,13 +50,13 @@ public class JpaSitRepository implements SitRepository {
                 .setFirstResult(0)
                 .setMaxResults(2)
                 .getResultList();
-        if( result == null) return null;
+        if( result == null) return null;    //최근 이용내역 2줄을 반환한다.
         return result;
     }
 
     public List<Seat> findUseSeat() {     //좌석이 이용되고 있으면 반환된다.
         List<Seat> result = em.createQuery("select m from Seat m where m.present_use = :present_use", Seat.class)
-                .setParameter("present_use", true)
+                .setParameter("present_use", true)  //현재 좌석을 이용중인 사용자들을 반환한다.
                 .getResultList();
 //        log.info("result = {}", result);
         if (result.size() == 0) {
@@ -91,7 +91,7 @@ public class JpaSitRepository implements SitRepository {
     }
 
     @Override
-    public Seat deleteMember(Member member) {
+    public Seat deleteMember(Member member) {   //모든 좌석을 삭제한다.
         Seat sit = findByMember(member);
 
         log.info("Member_ID = {}", sit.getMember().getId());
@@ -102,7 +102,7 @@ public class JpaSitRepository implements SitRepository {
     }
 
     @Override
-    public List<Seat> findAll() {
+    public List<Seat> findAll() {   //모든 좌석을 불러온다.
         List<Seat> result = em.createQuery("select m from Seat m", Seat.class).getResultList();
         if (result.isEmpty()) {
             return null;

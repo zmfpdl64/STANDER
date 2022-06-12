@@ -135,6 +135,22 @@ https://jung-max.github.io/2020/06/24/Web-3_SpringBoot-MariaDb%EC%97%B0%EA%B2%B0
     </h3>
 <br>
 
+<h1>프로그램 구조</h1>
+
+<h2>BACK END</h2>
+컨트롤러
+
+저장소
+
+서비스
+
+<h2>FRONT END</h2>
+menu
+
+login
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package stander.stander.controller;
+package stander.stander.controller.NonRest;
 
 import com.google.zxing.WriterException;
 import lombok.extern.slf4j.Slf4j;
@@ -31,16 +31,15 @@ public class QRController {
     @Value("${file.dir}")
     private String fileDir;
 
-    @GetMapping("/create")
+    @GetMapping("/create")      //QR코드 생성하는 주소이다.
     public String makeQr(HttpServletRequest request)
             throws WriterException, IOException {
-
 
 
         int width = 150;
         int height = 150;
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);    //이것도 현재 사용자가 로그인했던 적이 있는 사용자인지 확인하는 구문이다.
 
         if (session == null) {
             return "menu/home";
@@ -52,7 +51,7 @@ public class QRController {
         if (member == null) {
             return "menu/home";
         }
-        String url = "http://localhost:8080/open/" + member.getId();
+        String url = "http://localhost:8080/open/" + member.getId();    //IOT에서 접속할 주소이다. 하지만 여기 페이지는 사용되지 않는다.
 
         String file_path = fileDir + member.getId() + "/";
         String file_name = "QRCODE.jpg";
@@ -62,17 +61,4 @@ public class QRController {
 
         return "qr/test";
     }
-
-//    @ResponseBody
-//    @GetMapping("/image/{id}")
-//    public Resource downloadImage(@PathVariable(name = "id") String id) throws
-//            MalformedURLException {
-//        String full_path = "file:///" + fileDir + id + "/QRCODE.jpg";
-//        log.info("file_path={}", full_path);
-////
-//    }     return new UrlResource("file:C:/images/volley.png");
-//////        return new UrlResource("file:///C:images/QRCODE.jpg");
-////        return new UrlResource(full_path);
 }
-
-

@@ -16,7 +16,7 @@ public class MemberService {
         this.repository = repository;
     }
 
-    public void join(Member member) {
+    public void join(Member member) {   //회원가입 코드
 //        validName(member);
 
         repository.save(member);
@@ -24,15 +24,15 @@ public class MemberService {
 
     public void modify(Member member) {
         repository.merge(member);
-    }
+    }       //정보 수정
     private void validName(Member member) {
         if(repository.findByUsername(member.getUsername()) != null)
         {
-            throw new IllegalStateException("이름이 중복됩니다.");
+            throw new IllegalStateException("이름이 중복됩니다.");  //중복성 검사
         }
     }
 
-    public Member login(LoginForm loginForm) {
+    public Member login(LoginForm loginForm) {  //로그인 확인 코드
 //        Member member = repository.findById(7L);
 //        System.out.println(member.getName() + member.getPassword());
         Member member = repository.findByUsername(loginForm.getUsername());

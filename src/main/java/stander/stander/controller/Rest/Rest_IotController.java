@@ -24,7 +24,7 @@ public class Rest_IotController {
     @Value("${ip.address}")
     private String ip;
 
-    @GetMapping("/open/{id}")
+    @GetMapping("/open/{id}")   //IOT에서 QR코드가 존재하면 OPEN이 되게 하는 코드이다.
     public String open(@PathVariable("id") Long id) {
         try {
             Member member = memberService.findById(id);

@@ -30,7 +30,7 @@ public class Config implements WebMvcConfigurer {
     }
 
     @Bean
-    public JpaRepository repository() throws SQLException {
+    public JpaRepository repository() throws SQLException {  //sit, member 의존성 주입
         return new JpaRepository(em);
     }
 
@@ -52,7 +52,7 @@ public class Config implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**")
+        registry.addResourceHandler("/images/**")       //로컬 image를 url로 렌더링해주는 코드이다.
                 .addResourceLocations("file:D:\\images\\1");
     }
 //    @Override

@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Getter @Setter
-public class MemberForm {
+public class MemberForm {               //회원가입 폼이다. 규격을 설정해서 로그인 했을 때의 데이터가 부합하면 회원가입이 되고 안되면 다시 회원가입을 한다.
 
         @NotBlank(message = "이름은 필수 입력 값입니다.")
         private String name;
